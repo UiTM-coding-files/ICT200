@@ -202,21 +202,36 @@ SELECT * FROM MANAGEMENT;
 
 ---------------------------- QUERY (BELUM COMPLETE) ----------------------------
 -- g. 
+-- select students 101 and 104 from booking table
 SELECT BOOK_ID, STUD_ID, EVENT, BOOK_DATE
 FROM BOOKING
 WHERE STUD_ID IN (101, 104)
 ORDER BY BOOK_DATE DESC;
 
+-- select driver who has phone number that start with "012"
 SELECT *
 FROM DRIVER
 WHERE DRIVER_HP_NO LIKE '012%'
 ORDER BY DRIVER_ID DESC;
 
+-- shows bookings made between 5 jan and 10 jan 2026
+SELECT BOOK_ID, STUD_ID, EVENT, BOOK_DATE
+FROM BOOKING
+WHERE BOOK_DATE BETWEEN '2026-01-05' AND '2026-01-10';
+
+
 -- h.
+-- count total trip of each bus
 SELECT B.PLAT_NO, COUNT(T.TRIP_ID) AS TOTAL_TRIP
 FROM BUS B LEFT JOIN TRIP T ON B.PLAT_NO = T.PLAT_NO
 GROUP BY B.PLAT_NO;
 
+-- select the minimum trip date for each destination 
 SELECT R.START_POINT, R.END_POINT, MIN(T.TRIP_DATE) AS EARLIEST_TRIP
 FROM ROUTE R JOIN TRIP T ON R.ROUTE_ID = T.ROUTE_ID
 GROUP BY R.START_POINT, R.END_POINT;
+
+-- count the number of bookings for each event
+SELECT EVENT, COUNT(BOOK_ID) AS TOTAL_BOOKING
+FROM BOOKING
+GROUP BY EVENT;
