@@ -1,6 +1,6 @@
 CREATE DATABASE TransportationM;
 USE TransportationM;
-DROP DATABASE TransportationM;
+
 
 CREATE TABLE BUS(
     PLAT_NO VARCHAR(15) PRIMARY KEY,
@@ -200,26 +200,26 @@ SELECT * FROM MANAGEMENT;
 
 
 ---------------------------- QUERY (BELUM COMPLETE) ----------------------------
---e.
+-- e.
 -- display driver info with their bus info
 SELECT D.DRIVER_ID, D.DRIVER_NAME, D.PLAT_NO, B.CAPACITY, B.STATUS
 FROM DRIVER D
 LEFT JOIN BUS B ON B.PLAT_NO = D.PLAT_NO
 ORDER BY D.DRIVER_ID ASC;
 
---display info about student and their booking status
+-- display info about student and their booking status
 SELECT B.BOOK_ID, B.PAY_STATUS, B.BOOK_DATE, S.STUD_ID ,S.STUD_NAME, S.STUD_PROGRAMME
 FROM BOOKING B
 JOIN STUDENT S ON S.STUD_ID =  B.STUD_ID
 ORDER BY B.BOOK_DATE ASC;
 
---display trip info with its route start and end point
+-- display trip info with its route start and end point
 SELECT T.TRIP_ID, T.TRIP_DATE, T.TRIP_TIME,R.START_POINT, R.END_POINT
 FROM TRIP T
 JOIN ROUTE R ON R.ROUTE_ID = T.ROUTE_ID
 ORDER BY T.TRIP_DATE;
 
---f.
+-- f.
 -- show trip after 2026-01-05
 SELECT * FROM TRIP
 WHERE DAY(TRIP_DATE) > 05;
